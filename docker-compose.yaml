@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  db:
+    build: ./db
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
+    ports:
+      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - backend
+
+  app:
+    depends_on:
+      - db     
+    build: ./app
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    environment:
+      - SQL_HOST=db
+      - SQL_USER=$MYSQLDB_USER
+      - SQL_PASS=$MYSQLDB_ROOT_PASSWORD
+      - SQL_DB=$MYSQLDB_DATABASE
+      - PORT=$NODE_LOCAL_PORT
+      - HOST=$NODE_HOST
+      - SECRET=$JWT_SECRET
+      - WEB3_PROVIDER=$WEB3_PROVIDER
+    networks:
+      - backend
+    stdin_open: true
+    tty: true
+
+volumes: 
+  db:
+networks:
+  backend:

@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "7082579b-15f7-4a87-b77b-a88ba2478266",
+		"name": "check-tx",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11357832"
+	},
+	"item": [
+		{
+			"name": "register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"user@simorgh.com\",\n    \"password\": \"12345678\",\n    \"firstName\": \"user\",\n    \"lastName\": \"user\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4041/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "4041",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"user@simorgh.com\",\n    \"password\": \"12345678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4041/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "4041",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch tx data from web3",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTMxMjk5NjUsImVtYWlsIjoidXNlckBzaW1vcmdoLmNvbSIsImlhdCI6MTcxMzA5Mzk2NX0.trZd7HbrIApaiDYYMQaioG31L81THX_yy6F6Mcxj0eU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tx_hash\": \"0x304bc7b4c903e1762ac971ceb95845ea4bd2d7f72622d48a6424352f1c9aee97\",\n    \"provider\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4041/tx/new",
+					"host": [
+						"localhost"
+					],
+					"port": "4041",
+					"path": [
+						"tx",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get requests history of user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTI0Nzg1MzYsImVtYWlsIjoidXNlckBzaW1vcmdoLmNvbSIsImlhdCI6MTcxMjQ0MjUzNn0.n3qOUEpYbOMBZdOsjcLRs68z4Dnv-dX0fpCRWoDCExs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4041/tx/all",
+					"host": [
+						"localhost"
+					],
+					"port": "4041",
+					"path": [
+						"tx",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete transaction history",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTI0Nzg1MzYsImVtYWlsIjoidXNlckBzaW1vcmdoLmNvbSIsImlhdCI6MTcxMjQ0MjUzNn0.n3qOUEpYbOMBZdOsjcLRs68z4Dnv-dX0fpCRWoDCExs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:4041/tx/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "4041",
+					"path": [
+						"tx",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTI0Nzg1MzYsImVtYWlsIjoidXNlckBzaW1vcmdoLmNvbSIsImlhdCI6MTcxMjQ0MjUzNn0.n3qOUEpYbOMBZdOsjcLRs68z4Dnv-dX0fpCRWoDCExs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:4041/user/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "4041",
+					"path": [
+						"user",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
